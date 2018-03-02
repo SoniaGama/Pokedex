@@ -1,0 +1,1 @@
+- Usando la API de Pokeapi se diseñará una pokedex.
