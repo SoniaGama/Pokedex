@@ -46,14 +46,14 @@ function paintPokemon(pokeInfoObj, $containerPokemon) { //esta funcion debe reci
                 <img class = "card-img-top" src="https://dummyimage.com/200x200" alt="Pokemon">
                 <div class="card-body">
                    <h5 class="card-title">${pokeName}</h5>
-                   <a href="${apiPokeUrl}" class="card-link">Pokemon link</a>
+                   <a href="${apiPokeUrl}" class="card-link" target="_blank">Pokemon link</a>
                 </div>
              </div>
          </section>
          `
     });
     $containerPokemon.html(output);
-
+}
 
 function failPoke() {
     console.log('ERRORRR!!!!!!!');
