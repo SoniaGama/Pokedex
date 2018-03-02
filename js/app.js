@@ -6,7 +6,9 @@ let $searchInputText;
 // crear funciion de loadpage
 
 function loadPage () {    
-    $containerPokemon.html('');   
+    $containerPokemon.html('');
+    // let dataPokemon = pokemonData(element);
+    // paintPokemon(dataPokemon, $containerPokemon);
     getPokemons();
 }
 
@@ -17,39 +19,45 @@ function getPokemons() {
 }
 
 // revisar la funcion de data, crar un obeto y guardar en una variable
-function pokemonData(element) {   
+const pokemonData = (element) => {   
     const pokemonsInfo = element.pokemon_entries;   
    
-    pokemonsInfo.forEach((element, index) => {
-        // console.log(element);
-        
-        if (index < 50) {
-            const pokemons = element.pokemon_species;
+    let pokeInfoObj = pokemonsInfo.map((element, index) => {
+            const pokemons = element.pokemon_species;            
+            let pokeName = pokemons.name; 
             let apiPokeUrl = pokemons.url;
-            let pokeName = pokemons.name;
-            // let apiPokeEnpoint = `${apiPokeUrl}?q=${pokeName}`;
-            console.log(pokeName, apiPokeUrl);            
-            paintPokemon(pokeName, apiPokeUrl);            
-        }
-    });     
+            
+            const pokeObj = {
+                name: pokeName,
+                url: apiPokeUrl
+            }
+            return pokeObj;           
+              
+    });  
+    paintPokemon(pokeInfoObj)
+    return pokeInfoObj;
 }
 
-function paintPokemon(pokeName, apiPokeEnpoint) {//esta funcion debe recibir la función de data como variable 
-     let output = ``;
-    output += `
-         <section class="row">
-             <div class="card" style="width: 18rem;">
-                <img class = "card-img-top" src="https://dummyimage.com/200x200" alt="Pokemon">
-                <div class="card-body">
-                   <h5 class="card-title">${pokeName}</h5>
-                   <a href="${apiPokeEnpoint}" class="card-link"> Card link </a>
-                </div>
-             </div>
-         </section>
-    `      
-    // Revisar output 
-    $containerPokemon.html(output);
+function paintPokemon(pokeInfoObj) { //esta funcion debe recibir la función de data como variable
+    console.log(pokeInfoObj);
+    
+
+    //  let output = ``;
+    // output += `
+    //      <section class="row">
+    //          <div class="card" style="width: 18rem;">
+    //             <img class = "card-img-top" src="https://dummyimage.com/200x200" alt="Pokemon">
+    //             <div class="card-body">
+    //                <h5 class="card-title">${pokeName}</h5>
+    //                <a href="${apiPokeEnpoint}" class="card-link"> Card link </a>
+    //             </div>
+    //          </div>
+    //      </section>
+    // `      
+    // // Revisar output 
+    // $containerPokemon.html(output);
 }
+
 
 function failPoke() {
     console.log('ERRORRR!!!!!!!');
