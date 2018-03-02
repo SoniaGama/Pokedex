@@ -5,31 +5,31 @@ let $searchInputText;
 
 // crear funciion de loadpage
 
-$form.submit(function (e) {
-    e.preventDefault();
-    $containerPokemon.html('');
-    $searchInputText = $searchInput.val();
+function loadPage () {    
+    $containerPokemon.html('');   
     getPokemons();
-})
+}
 
 function getPokemons() {
     $.ajax({
         url: 'https://pokeapi.co/api/v2/pokedex/1/'
-    }).done(searchPokemonData).fail(failPoke);
+    }).done(pokemonData).fail(failPoke);
 }
 
 // revisar la funcion de data, crar un obeto y guardar en una variable
-function searchPokemonData(element) {
-    const pokemonsInfo = element.pokemon_entries;
+function pokemonData(element) {   
+    const pokemonsInfo = element.pokemon_entries;   
    
     pokemonsInfo.forEach((element, index) => {
+        // console.log(element);
+        
         if (index < 50) {
             const pokemons = element.pokemon_species;
             let apiPokeUrl = pokemons.url;
             let pokeName = pokemons.name;
-            let apiPokeEnpoint = `${apiPokeUrl}?q=${pokeName}`;
-            console.log(pokeName, apiPokeEnpoint);            
-            paintPokemon(pokeName, apiPokeEnpoint);            
+            // let apiPokeEnpoint = `${apiPokeUrl}?q=${pokeName}`;
+            console.log(pokeName, apiPokeUrl);            
+            paintPokemon(pokeName, apiPokeUrl);            
         }
     });     
 }
@@ -51,9 +51,8 @@ function paintPokemon(pokeName, apiPokeEnpoint) {//esta funcion debe recibir la 
     $containerPokemon.html(output);
 }
 
-
-
-
 function failPoke() {
     console.log('ERRORRR!!!!!!!');
 }
+
+$(document).ready(loadPage);
