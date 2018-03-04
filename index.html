@@ -12,38 +12,72 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <span class="navbar-brand">Pokédex</span>
+    <section>
 
-            <form id="form-search" class="form-inline my-2 my-lg-0">
-                <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="PokéBusqueda">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">ShowMe</button>
-            </form>
-            </div>
-        </nav>
-    </header>
-    <main class="container" id="container-pokemon">
+        <header>
+            <nav class="navbar navbar-expand-lg fixed-top">
+                <span class="navbar-brand ml-3">Pokédex</span>
+                <form id="form-search" class="input-group input-group-sm">
+                    <input id="search-input" class="form-control mr-3" type="search" placeholder="PokeBusqueda">
+                </form>
+            </nav>
+        </header>
 
-        <!-- <section class="row">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <a href="#" class="card-link">Card link</a>
+        <section class="modal fade" id="info-pokemon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">pokemon</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="https://dummyimage.com/200x200" alt="">
+                            </div>
+                            <div class="col-md-8 ml-auto">
+                                <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                                    <p>tagline</p>
+                                    <div class="card-body">
+                                        <section>
+                                            <p>altura-peso-categoria-hanilidad-sexo o ccapture rate, habbitat, color</p>
+                                        </section>
+                                    </div>
+                                    <section>
+                                        <h6>tipo</h6>
+                                        <!-- <span></span> -->
+                                    </section>
+                                    <section>
+                                        <h6>Debilidad</h6>
+                                        <!-- <span></span> -->
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section> -->
-        
-    </main>
+        </section>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="js/app.js"></script>
+        <main class="container mx-auto mt-13" id="container-pokemon">
+
+            <main>
+
+
+
+
+
+
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
+                <script src="js/app.js"></script>
 
 </body>
 
