@@ -34,7 +34,7 @@ nav {
     background-color: transparent;
 }
 
-.card-img-top {    
+.card-img-top {
     width: 100%;
     /* height: auto; */
 }
@@ -42,3 +42,4 @@ nav {
 .card-title {
     font-size: 11pt;
 }
+
