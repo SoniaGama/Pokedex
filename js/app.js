@@ -61,7 +61,7 @@ const paintInfoModal = objModal => {
             </div>
         </section>
     `;
-    $('.dinamic-modal').html(output);
+    $('#dinamic-modal').html(output);
     //   <h6>Habitat:</h6> 
     //   <p>${objModal.habitat}</p>
 };
@@ -98,8 +98,7 @@ const getJsonModal = e => {
 
     $.when(pokeInfo, pokeInfoComplete).done((element, item) => {
         getDataModal(element[0], item[0]);
-    }).fail(failPoke);
-    // getImages(id);
+    }).fail(failPoke);   
 };
 
 const paintPokemon = pokeInfoObj => { //esta funcion debe recibir la función de data como variable
