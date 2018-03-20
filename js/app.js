@@ -1,6 +1,3 @@
-// revisar localStorage para evitar error 504
-// revisar error, modales se cierran solos
-
 // siguientes alcances:
 // corregir errores
 // usar localstorage
@@ -18,68 +15,79 @@ const failPoke = () => {
 };
 
 const paintInfoModal = objModal => {
-    // revisar unidades de medida de peso y altura            
-    let output = ``;
-    output = `
-        <section class="modal" id="info-pokemon" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">${objModal.name}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="${objModal.imagePoke}" alt="image-poke">
-                            </div>
-                            <div class="col-md-8 ml-auto">
-                                <div class="card text-white bg-info mb-3" style="max-width: 18rem;">                                    
-                                    <div class="card-body">
-                                        <section>
-                                            <h6>Abilities:</h6>                                            
-                                            <p>${objModal.abilities}</p>
-                                            <h6>Capture Rate:</h6> 
-                                            <p>${objModal.captureRate}</p>
-                                            <h6>Color:</h6> 
-                                            <p>${objModal.color}</p>                                          
-                                            <h6>Shape:</h6> 
-                                            <p>${objModal.shape}</p>
-                                            <h6>Weight:</h6> 
-                                            <p>${objModal.weight}</p>
-                                            <h6>Height:</h6> 
-                                            <p>${objModal.height}</p>                                          
-                                        </section>
-                                    </div>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+    let outputTitle = `<h5 class="modal-title">${capitalize(objModal.name)}</h5>`;
+    let outputImg = `<img src="${objModal.imagePoke}" alt="image-poke">`;
+    let outputCharacteristics = `
+                    <table class="table styles-modal">
+                        <thead class='styles-modal'>
+                            <tr class='table-primary'>
+                                <th class='styles-modal' scope="col">Abilities</th>
+                                <th class='styles-modal' id="font-little" scope="col">Capture Rate</th>
+                                <th class='styles-modal' scope="col">Color</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='table-primary'>
+                                <td scope="row">${capitalize(objModal.abilities)}</td>
+                                <td>${objModal.captureRate}</td>
+                                <td>${capitalize(objModal.color)}</td>
+                                
+                            </tr>                            
+                        </tbody>
+                    </table>
+                    <table class="table styles-modal">
+                        <thead class='styles-modal'>
+                            <tr class='table-primary'>
+                                <th class='styles-modal' scope="col">Weight</th>
+                                <th class='styles-modal' scope="col">Height</th>
+                                <th class='styles-modal' scope="col">Shape</th> 
+                                <th class='styles-modal' scope="col">Habitat</th>                                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='table-primary'>
+                                <td scope="row">${objModal.weight}</td>
+                                <td>${objModal.height}</td>
+                                <td>${capitalize(objModal.shape)}</td>
+                                <td>${objModal.habitat}</td>                
+                            </tr>                            
+                        </tbody>
+                    </table>
     `;
-    $('#dinamic-modal').html(output);
-    //   <h6>Habitat:</h6> 
-    //   <p>${objModal.habitat}</p>
+
+    $('#title').html(outputTitle);
+    $('#img').html(outputImg);
+    $('#characteristic').html(outputCharacteristics);
 };
 
 const getDataModal = (element, item) => {
+    // console.log(element);
+    
     const id = element.id;
-    const objModal = {
+    // 
+    let objModal = {
         id: id,
         name: element.name,
         captureRate: element.capture_rate,
-        color: element.color.name,
-        // habitat: element.habitat.name,  revisar para los elementos que tiene null en esta propiedad
+        color: element.color.name,       
         shape: element.shape.name,
         weight: item.weight,
         height: item.height,
         abilities: item.abilities.map(abilityItem => abilityItem.ability.name).join(', '),
+        habitat: '',
         imagePoke: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
     }    
+
+    // console.log(element.habitat.name);
+    
+
+    if (typeof element.habitat === null) {
+        objModal.habitat == 'no encontrado';        
+    }else{
+        objModal.habitat == element.habitat.name;
+    }
+
     paintInfoModal(objModal);
 };
 
@@ -96,22 +104,23 @@ const getJsonModal = e => {
         async: true
     });
 
-    $.when(pokeInfo, pokeInfoComplete).done((element, item) => {
+    $.when(pokeInfo, pokeInfoComplete).done((element, item) => { 
+
         getDataModal(element[0], item[0]);
-    }).fail(failPoke);   
+    }).fail(failPoke);
 };
 
-const paintPokemon = pokeInfoObj => { //esta funcion debe recibir la función de data como variable
+const paintPokemon = pokeInfoObj => { 
     let output = ``;
     pokeInfoObj.forEach(element => {
         output += `    
                 <div class="card-deck float-left mt-3 mr-1 ml-1">
                     <div class="card border">
-                    <button data-id="${element.id}" type="button" class="modal-button btn" data-toggle="modal" data-target="#info-pokemon">
+                    <button data-id="${element.id}" type="button" class="modal-button btn card-btn" data-toggle="modal" data-target="#info-pokemon">
                         <img data-id="${element.id}" class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${element.id}.png" alt="PokeImage">
                     </button>            
                         <div class="card-body">               
-                            <h6 id="button-info" class="card-title text-center">${element.name}</h6>  
+                            <h6 id="button-info" class="card-title text-center">${capitalize(element.name)}</h6>  
                         </div>
                     </div>                   
                 </div>
@@ -124,7 +133,11 @@ const paintPokemon = pokeInfoObj => { //esta funcion debe recibir la función de
 
 const pokemonData = element => {
     const pokemonsInfo = element.pokemon_entries;
-    let pokeInfoArray = pokemonsInfo.map(element => {
+
+    localStorage.setItem('pokemonData', JSON.stringify(pokemonsInfo));
+    const pokeData = JSON.parse(localStorage.getItem('pokemonData'));
+
+    let pokeInfoArray = pokeData.map(element => {
         const pokemons = element.pokemon_species;
         const pokeObj = {
             name: pokemons.name,
@@ -142,8 +155,19 @@ const getPokemons = () => {
 
 };
 
-const loadPage = () => {    
+const loadPage = () => {
     getPokemons();
+};
+
+const capitalize = (str) => {
+    var newStr = str.split(" ");
+    var result = [];
+    newStr.forEach(function (palabra) {
+        var primerLetra = palabra.charAt(0).toUpperCase();
+        var mediaPalabra = palabra.slice(1, palabra.length);
+        result.push(primerLetra + mediaPalabra);
+    });
+    return result.join(" ");
 };
 
 $(document).ready(loadPage);

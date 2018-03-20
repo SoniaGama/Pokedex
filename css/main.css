@@ -36,10 +36,21 @@ nav {
 
 .card-img-top {
     width: 100%;
-    /* height: auto; */
 }
 
 .card-title {
     font-size: 11pt;
 }
 
+.font-little {
+    font-size: 50% !important;
+}
+
+.styles-modal {
+    vertical-align: inherit !important;
+    border-collapse: initial;
+}
+
+.card-btn:hover {
+    background-color: #D30A40;
+}
