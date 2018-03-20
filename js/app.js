@@ -41,8 +41,7 @@ const paintInfoModal = objModal => {
                             <tr class='table-primary'>
                                 <th class='styles-modal' scope="col">Weight</th>
                                 <th class='styles-modal' scope="col">Height</th>
-                                <th class='styles-modal' scope="col">Shape</th> 
-                                <th class='styles-modal' scope="col">Habitat</th>                                              
+                                <th class='styles-modal' scope="col">Shape</th>                                                                              
                             </tr>
                         </thead>
                         <tbody>
@@ -50,12 +49,14 @@ const paintInfoModal = objModal => {
                                 <td scope="row">${objModal.weight}</td>
                                 <td>${objModal.height}</td>
                                 <td>${capitalize(objModal.shape)}</td>
-                                <td>${objModal.habitat}</td>                
+                                           
                             </tr>                            
                         </tbody>
                     </table>
     `;
 
+    //  <td>${objModal.habitat}</td>   
+    // <th class='styles-modal' scope="col">Habitat</th>  
     $('#title').html(outputTitle);
     $('#img').html(outputImg);
     $('#characteristic').html(outputCharacteristics);
@@ -75,18 +76,17 @@ const getDataModal = (element, item) => {
         weight: item.weight,
         height: item.height,
         abilities: item.abilities.map(abilityItem => abilityItem.ability.name).join(', '),
-        habitat: '',
+        // habitat: '',
         imagePoke: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
     }    
 
-    // console.log(element.habitat.name);
-    
+    // console.log(element.habitat.name);    
 
-    if (typeof element.habitat === null) {
-        objModal.habitat == 'no encontrado';        
-    }else{
-        objModal.habitat == element.habitat.name;
-    }
+    // if (typeof element.habitat === null) {
+    //     objModal.habitat == 'no encontrado';        
+    // }else{
+    //     objModal.habitat == element.habitat.name;
+    // }
 
     paintInfoModal(objModal);
 };
