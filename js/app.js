@@ -1,9 +1,3 @@
-// siguientes alcances:
-// corregir errores
-// usar localstorage
-// pasar a fetch
-// busqueda keyup 
-
 const $container = $('#container-pokemon');
 
 const $form = $('#form-search');
@@ -15,7 +9,6 @@ const failPoke = () => {
 };
 
 const paintInfoModal = objModal => {
-
     let outputTitle = `<h5 class="modal-title">${capitalize(objModal.name)}</h5>`;
     let outputImg = `<img src="${objModal.imagePoke}" alt="image-poke">`;
     let outputCharacteristics = `
@@ -48,15 +41,11 @@ const paintInfoModal = objModal => {
                             <tr class='table-primary'>
                                 <td scope="row">${objModal.weight}</td>
                                 <td>${objModal.height}</td>
-                                <td>${capitalize(objModal.shape)}</td>
-                                           
+                                <td>${capitalize(objModal.shape)}</td>                                           
                             </tr>                            
                         </tbody>
                     </table>
     `;
-
-    //  <td>${objModal.habitat}</td>   
-    // <th class='styles-modal' scope="col">Habitat</th>  
     $('#title').html(outputTitle);
     $('#img').html(outputImg);
     $('#characteristic').html(outputCharacteristics);
@@ -76,17 +65,8 @@ const getDataModal = (element, item) => {
         weight: item.weight,
         height: item.height,
         abilities: item.abilities.map(abilityItem => abilityItem.ability.name).join(', '),
-        // habitat: '',
         imagePoke: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
     }    
-
-    // console.log(element.habitat.name);    
-
-    // if (typeof element.habitat === null) {
-    //     objModal.habitat == 'no encontrado';        
-    // }else{
-    //     objModal.habitat == element.habitat.name;
-    // }
 
     paintInfoModal(objModal);
 };
