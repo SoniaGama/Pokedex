@@ -55,7 +55,6 @@ const getDataModal = (element, item) => {
     // console.log(element);
     
     const id = element.id;
-    // 
     let objModal = {
         id: id,
         name: element.name,
