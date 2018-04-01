@@ -1,12 +1,12 @@
-# Usando la API de Pokeapi se diseñará una pokedex.
+# Consumiendo la API de [Pokeapi](https://pokeapi.co/) se diseñó una pokedex.
 
-## Alcances Pokedex:
-- V1 Pinta el nombre y url
-- V2 Abre Modal (ccapture rate, habbitat, color UNICAMENTE, o width y height)
-- V3 Agrega Imagenes a cada pokemon
-- V4 Copia exacta en datos al mock up propuesto
-###Extras:
-- Usar fetch
+Página que muestra los 722 pokemones de la primera generación, con su respectiva información en un modal para cada uno.
+
+![Pokedex](https://user-images.githubusercontent.com/32865262/38178073-693b98fa-35d0-11e8-96c1-299c0ed0150b.PNG)
+
+Proyecto desarrollado como alumna de Laboratoria.
+
+
 
 
 
